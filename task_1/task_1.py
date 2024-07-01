@@ -13,10 +13,10 @@ def file_to_list(lines: List[str]) -> List[int] | None:
     for number, line in enumerate(lines):
         if not re.match(pattern=pattern, string=line):
             print(f"Check the input file. String #{number + 1} is in incorrect format!")
-            return 
+            return
         salary = int(line.split(",")[1].strip())
         salary_list.append(salary)
-        
+
     return salary_list
 
 
@@ -38,11 +38,11 @@ def total_salary(path: str) -> Tuple[int, int] | None:
 
     if salary_list:
         total_salary_value = sum(salary_list)
-        average_salary_value =  int(total_salary_value / len(salary_list))
+        average_salary_value = int(total_salary_value / len(salary_list))
 
         return total_salary_value, average_salary_value
-    return 
-    
+    return
+
 
 if __name__ == "__main__":
     try:
