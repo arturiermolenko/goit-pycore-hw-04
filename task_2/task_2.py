@@ -1,4 +1,5 @@
 import re
+from pathlib import Path
 from typing import List, Dict
 
 
@@ -29,12 +30,13 @@ def get_cats_info(path: str) -> List[Dict] | None:
     :return: list of dictionaries with info about each cat
     """
 
-    try:
-        with open(path, "r", encoding="UTF-8") as file:
-            lines = file.readlines()
-    except FileNotFoundError:
-        print("There is no such file. Check the path please")
+    file = Path(path)
+    if not file.exists():
+        print("File does not exist. Check the path please")
         return
+
+    with open(path, "r", encoding="UTF-8") as file:
+        lines = file.readlines()
 
     list_of_cat_lists = file_to_list(lines)
     list_of_cat_dicts = []
@@ -53,4 +55,5 @@ def get_cats_info(path: str) -> List[Dict] | None:
 
 if __name__ == "__main__":
     cats_info = get_cats_info("cats_file.txt")
-    print(cats_info)
+    if cats_info:
+        print(cats_info)
